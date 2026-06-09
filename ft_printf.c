@@ -3,58 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:49:42 by mramos-2          #+#    #+#             */
-/*   Updated: 2025/06/05 16:26:57 by mramos-2         ###   ########.fr       */
+/*   Created: 2026/05/18 16:57:16 by mramos-r          #+#    #+#             */
+/*   Updated: 2026/06/01 15:35:40 by mramos-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	searchtypes(char specifier, va_list args)
+int	searchtypes(char specifier, va_list *args)
 {
 	if (specifier == '%')
 		return (ft_putchar('%'));
 	else if (specifier == 'c')
-		return (ft_putchar(va_arg(args, int)));
+		return (ft_putchar(va_arg(*args, int)));
 	else if (specifier == 's')
-		return (ft_putstr(va_arg(args, char *)));
+		return (ft_putstr(va_arg(*args, char *)));
 	else if (specifier == 'p')
-		return (ft_pointer((unsigned long)va_arg(args, void *)));
+		return (ft_pointer(va_arg(*args, void *)));
 	else if (specifier == 'd' || specifier == 'i')
-		return (ft_putnbr(va_arg(args, int)));
+		return (ft_putnbr(va_arg(*args, int)));
 	else if (specifier == 'u')
-		return (ft_putnbru(va_arg(args, unsigned int)));
+		return (ft_putnbru(va_arg(*args, unsigned int)));
 	else if (specifier == 'x' || specifier == 'X')
-		return (ft_nbrhex((unsigned int)va_arg(args, int), specifier));
+		return (ft_nbrhex(va_arg(*args, unsigned int), specifier));
 	else
-		return (ft_putchar('%'));
+		return (ft_putchar(specifier));
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	args;
+	int		i;
 	int		len;
+	va_list	args;
 
-	va_start(args, format);
+	if (!format)
+		return (-1);
+	i = 0;
 	len = 0;
-	while (*format)
+	va_start (args, format);
+	while (format[i])
 	{
-		if (*format == '%')
+		if (format[i] == '%' && format[i + 1] == '\0')
 		{
-			format ++;
-			len += searchtypes(*format, args);
+			va_end (args);
+			return (-1);
 		}
+		else if (format[i] == '%')
+			len += searchtypes(format[++i], &args);
 		else
-			len += ft_putchar(*format);
-		format ++;
+			len += ft_putchar(format[i]);
+		i++;
 	}
-	va_end(args);
+	va_end (args);
 	return (len);
 }
-/*
-int main()
-{
-	ft_printf("%i", 3);
-}*/

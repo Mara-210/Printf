@@ -3,27 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nbrhex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 13:23:05 by mramos-2          #+#    #+#             */
-/*   Updated: 2025/06/05 15:07:42 by mramos-2         ###   ########.fr       */
+/*   Created: 2026/05/18 16:07:23 by mramos-r          #+#    #+#             */
+/*   Updated: 2026/05/19 16:57:55 by mramos-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_nbrhex(unsigned long n, char upper)
+int	ft_nbrhex(unsigned int n, char format)
 {
-	int		len;
-	char	*num_hex;
+	int	count;
 
-	if (upper == 'X')
-		num_hex = "0123456789ABCDEF";
-	else
-		num_hex = "0123456789abcdef";
-	len = 0;
+	count = 0;
 	if (n >= 16)
-		len += ft_nbrhex(n / 16, upper);
-	len += ft_putchar(num_hex[n % 16]);
-	return (len);
+		count += ft_nbrhex(n / 16, format);
+	if (format == 'x')
+		count += ft_putchar("0123456789abcdef"[n % 16]);
+	else if (format == 'X')
+		count += ft_putchar("0123456789ABCDEF"[n % 16]);
+	return (count);
 }
+
+/*int	main(void)
+{
+	unsigned int	n = 93;
+
+	printf("%x", ft_nbrhex(n, 'x'));
+	return (0);
+}*/

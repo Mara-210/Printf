@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 17:34:48 by mramos-2          #+#    #+#             */
-/*   Updated: 2025/06/05 15:07:34 by mramos-2         ###   ########.fr       */
+/*   Created: 2026/05/18 16:02:22 by mramos-r          #+#    #+#             */
+/*   Updated: 2026/05/19 12:35:37 by mramos-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

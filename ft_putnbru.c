@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbru.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 12:59:11 by mramos-2          #+#    #+#             */
-/*   Updated: 2025/06/05 16:27:51 by mramos-2         ###   ########.fr       */
+/*   Created: 2026/05/18 16:05:39 by mramos-r          #+#    #+#             */
+/*   Updated: 2026/05/19 12:35:31 by mramos-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putnbru(unsigned int n)
 {
 	int	len;
 
 	len = 0;
-	if (n == -2147483648)
-	{
-		if (write (1, "-2147483648", 11) == 11)
-			return (11);
-	}
-	if (n < 0)
-	{
-		len += write (1, "-", 1);
-		n = -n;
-	}
 	if (n >= 10)
-		len += ft_putnbr(n / 10);
+		len += ft_putnbru(n / 10);
 	len += ft_putchar((n % 10) + '0');
 	return (len);
 }

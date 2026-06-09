@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/05 15:01:32 by mramos-2          #+#    #+#             */
-/*   Updated: 2025/06/05 15:08:01 by mramos-2         ###   ########.fr       */
+/*   Created: 2026/05/18 16:04:33 by mramos-r          #+#    #+#             */
+/*   Updated: 2026/05/27 18:02:14 by mramos-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
 
+	if (!s)
+		s = "(null)";
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i])
+	{
+		write(1, &s[i], 1);
 		i++;
+	}
 	return (i);
 }

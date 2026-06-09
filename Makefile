@@ -3,26 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mramos-2 <mramos-2@student.42malaga.com    +#+  +:+       +#+         #
+#    By: mramos-r <mramos-r@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/05/27 15:45:47 by mramos-2          #+#    #+#              #
-#    Updated: 2025/06/05 15:08:41 by mramos-2         ###   ########.fr        #
+#    Created: 2026/05/18 16:09:53 by mramos-r          #+#    #+#              #
+#    Updated: 2026/05/27 17:19:09 by mramos-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = libftprintf.a
 HEADER = ft_printf.h
-SRCS = ft_printf.c functions/ft_putchar.c functions/ft_putstr.c functions/ft_putnbr.c functions/ft_putnbru.c functions/ft_nbrhex.c functions/ft_pointer.c functions/ft_strlen.c
+SRCS = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbru.c ft_nbrhex.c ft_pointer.c 
 OBJS = $(SRCS:.c=.o)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 all: $(NAME)
-$(OBJS): $(HEADER)
 $(NAME): $(OBJS)
 	   $(AR) $(NAME) $(OBJS)
+$%.o:%.c $(HEADER)
+	$(CC) $(CFLAGS) -c %< -o $@
 clean:
 	$(RM) $(OBJS)
 fclean: clean
